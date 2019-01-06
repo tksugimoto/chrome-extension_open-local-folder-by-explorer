@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>初期設定</title>
+	<style>
+		body {
+			font-size: large;
+			max-width: 1500px;
+			margin: 0 auto;
+		}
+		input {
+			width: 100%;
+			padding: 5px;
+			margin: 5px;
+		}
+		pre {
+			background-color: #f6f8fa;
+			padding: 16px;
+		}
+		button {
+			cursor: pointer;
+			padding: 5px;
+			border-radius: 5px;
+		}
+		[data-description]::before {
+			content: attr(data-description) ": ";
+			color:dimgray;
+		}
+	</style>
+</head>
+<body>
+	<h1>
+		初期設定
+	</h1>
+	<ol>
+		<li>
+			<a href="https://nodejs.org/ja/" target="_blank">Node.js</a> をインストール<br>
+			※ LTS 推奨版でOK
+		</li>
+		<li>
+			削除されない適当な場所にフォルダを作成する<br>
+			※ フォルダが削除や移動によって存在しなくなると本初期設定の再実施が必要
+		</li>
+		<li>
+			以下のファイルを作成したフォルダに保存
+			<ul>
+				<li>
+					<a id="manifest-json-download-link" download="manifest.json">manifest.json</a>
+				</li>
+				<li>
+					<a href="/host-app-src/native-messaging-host-app.bat" download="native-messaging-host-app.bat">native-messaging-host-app.bat</a>
+				</li>
+				<li>
+					<a href="/host-app-src/native-messaging-host-app.js" download="native-messaging-host-app.js">native-messaging-host-app.js</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			作成したフォルダのpathを以下に入力<br>
+			<input id="dirPath" placeholder="C:\path\to">
+		</li>
+		<li>
+			レジストリ登録
+			<ul>
+				<li>
+					レジストリエディターから手動で設定
+					<pre data-description="Key"><code id="reg-key"></code></pre>
+					<pre data-description="Value"><code id="reg-value"></code></pre>
+				</li>
+				<li>
+					レジストリ登録ファイルを <a id="reg-download-link">ダウンロード</a> して実行
+					<pre><code id="reg-content"></code></pre>
+				</li>
+			</ul>
+		</li>
+		<li>
+			動作確認
+			<ol>
+				<li>
+					Explorerで開く ディレクトリ/ファイル のパス<br>
+					<input id="filePathToOpen" value="C:\ProgramData\">
+				</li>
+				<li>
+					<button type="button" id="open">Explorerで開く</button>
+				</li>
+			</ol>
+		</li>
+	</ol>
+	<script type="module" src="./main.js"></script>
+</body>
+</html>
