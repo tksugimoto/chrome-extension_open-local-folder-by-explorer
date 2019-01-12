@@ -6,8 +6,9 @@ const showNotification = info => {
 	chrome.notifications.create({
 		type: 'basic',
 		iconUrl: '/icons/icon128.png',
-		title: extensionName,
-		message: info.message,
+		title: info.resultMessage,
+		message: info.path,
+		contextMessage: extensionName,
 	});
 };
 

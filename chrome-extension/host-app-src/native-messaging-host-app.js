@@ -44,7 +44,8 @@ const openByExplorer = path => {
         if (err) {
             // file or directory が無い
             send({
-                message: `"${path}" にファイル/フォルダが存在しない`,
+                path,
+                resultMessage: 'ファイル/フォルダが存在しません',
                 err,
             });
             return;
@@ -52,12 +53,14 @@ const openByExplorer = path => {
         if (stats.isDirectory()) {
             execFile('explorer', [path]);
             send({
-                message: `フォルダ "${path}" を開きました`,
+                path,
+                resultMessage: 'フォルダを開きました',
             });
         } else {
             execFile('explorer', ['/select,', path]);
             send({
-                message: `ファイル "${path}" を開きました`,
+                path,
+                resultMessage: 'ファイルのあるフォルダを開きました',
             });
         }
     });
