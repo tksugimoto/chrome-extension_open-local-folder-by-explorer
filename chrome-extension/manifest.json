@@ -9,6 +9,7 @@
 	},
 	"options_page": "setup/index.html",
 	"permissions": [
+		"notifications",
 		"contextMenus",
 		"nativeMessaging"
 	],

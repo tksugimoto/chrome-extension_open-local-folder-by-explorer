@@ -1,4 +1,5 @@
 import common from './common.js';
+import notificationUtil from './notification-util.js';
 
 chrome.runtime.onInstalled.addListener(details => {
 	if (details.reason === 'install') {
@@ -49,6 +50,8 @@ chrome.contextMenus.onClicked.addListener((info) => {
 	};
 	chrome.runtime.sendNativeMessage(common.applicationName, messageToNative, response => {
 		console.info(response);
+
+		notificationUtil.showNotification(response);
 	});
 });
 
