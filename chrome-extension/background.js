@@ -66,6 +66,9 @@ const extractFilePath = info => {
 	}
 	if (info.menuItemId === CONTEXT_MENU_ID.SELECTION) {
 		const selectionText = info.selectionText;
+		if (selectionText.startsWith('"') && selectionText.endsWith('"')) {
+			return selectionText.slice(1, -1);
+		}
 		return selectionText;
 	}
 };
