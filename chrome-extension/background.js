@@ -9,6 +9,7 @@ chrome.runtime.onInstalled.addListener(details => {
 const CONTEXT_MENU_ID = {
 	PAGE: 'page',
 	LINK: 'link',
+	SELECTION: 'selection',
 };
 
 const createContextMenu = () => {
@@ -29,6 +30,11 @@ const createContextMenu = () => {
 			'<all_urls>',
 		],
 		id: CONTEXT_MENU_ID.LINK,
+	});
+	chrome.contextMenus.create({
+		title: '選択文字列をExplorerで開く（ローカルファイルパスの場合）',
+		contexts: ['selection'],
+		id: CONTEXT_MENU_ID.SELECTION,
 	});
 };
 
@@ -57,6 +63,10 @@ const extractFilePath = info => {
 			return;
 		}
 		return convertUrl2FilePath(linkUrl);
+	}
+	if (info.menuItemId === CONTEXT_MENU_ID.SELECTION) {
+		const selectionText = info.selectionText;
+		return selectionText;
 	}
 };
 
