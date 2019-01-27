@@ -7,8 +7,8 @@ chrome.runtime.onInstalled.addListener(details => {
 });
 
 const CONTEXT_MENU_ID = {
-	OPEN_LOCAL_FOLDER: 'open-local-folder',
-	OPEN_LOCAL_FILE: 'open-local-file',
+	PAGE: 'page',
+	LINK: 'link',
 };
 
 const createContextMenu = () => {
@@ -18,7 +18,7 @@ const createContextMenu = () => {
 		documentUrlPatterns: [
 			'file:///*',
 		],
-		id: CONTEXT_MENU_ID.OPEN_LOCAL_FOLDER,
+		id: CONTEXT_MENU_ID.PAGE,
 	});
 	chrome.contextMenus.create({
 		title: 'リンク先をExplorerで開く（ローカルファイルの場合）',
@@ -28,7 +28,7 @@ const createContextMenu = () => {
 			// ※ targetUrlPatterns 指定を無しにしてもOk
 			'<all_urls>',
 		],
-		id: CONTEXT_MENU_ID.OPEN_LOCAL_FILE,
+		id: CONTEXT_MENU_ID.LINK,
 	});
 };
 
@@ -36,12 +36,8 @@ chrome.runtime.onInstalled.addListener(createContextMenu);
 chrome.runtime.onStartup.addListener(createContextMenu);
 
 chrome.contextMenus.onClicked.addListener((info) => {
-	const localFileUrl = info.menuItemId === CONTEXT_MENU_ID.OPEN_LOCAL_FILE ? info.linkUrl : info.pageUrl;
-	if (!localFileUrl.startsWith('file://')) {
-		// link 要素用の右クリックメニューの表示対象を <all_urls> にしているため fileスキーマ以外を無視する
-		return;
-	}
-	const filePath = convertUrl2FilePath(localFileUrl);
+	const filePath = extractFilePath(info);
+	if (!filePath) return;
 	const messageToNative = {
 		filePath,
 	};
@@ -49,6 +45,20 @@ chrome.contextMenus.onClicked.addListener((info) => {
 		console.info(response);
 	});
 });
+
+const extractFilePath = info => {
+	if (info.menuItemId === CONTEXT_MENU_ID.PAGE) {
+		return convertUrl2FilePath(info.pageUrl);
+	}
+	if (info.menuItemId === CONTEXT_MENU_ID.LINK) {
+		const linkUrl = info.linkUrl;
+		if (!linkUrl.startsWith('file://')) {
+			// link 要素用の右クリックメニューの表示対象を <all_urls> にしているため fileスキーマ以外を無視する
+			return;
+		}
+		return convertUrl2FilePath(linkUrl);
+	}
+};
 
 const convertUrl2FilePath = encodedUrl => {
 	const decodedURI = decodeURI(encodedUrl);
