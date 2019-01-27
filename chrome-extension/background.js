@@ -36,12 +36,8 @@ chrome.runtime.onInstalled.addListener(createContextMenu);
 chrome.runtime.onStartup.addListener(createContextMenu);
 
 chrome.contextMenus.onClicked.addListener((info) => {
-	const localFileUrl = info.menuItemId === CONTEXT_MENU_ID.LINK ? info.linkUrl : info.pageUrl;
-	if (!localFileUrl.startsWith('file://')) {
-		// link 要素用の右クリックメニューの表示対象を <all_urls> にしているため fileスキーマ以外を無視する
-		return;
-	}
-	const filePath = convertUrl2FilePath(localFileUrl);
+	const filePath = extractFilePath(info);
+	if (!filePath) return;
 	const messageToNative = {
 		filePath,
 	};
@@ -49,6 +45,20 @@ chrome.contextMenus.onClicked.addListener((info) => {
 		console.info(response);
 	});
 });
+
+const extractFilePath = info => {
+	if (info.menuItemId === CONTEXT_MENU_ID.PAGE) {
+		return convertUrl2FilePath(info.pageUrl);
+	}
+	if (info.menuItemId === CONTEXT_MENU_ID.LINK) {
+		const linkUrl = info.linkUrl;
+		if (!linkUrl.startsWith('file://')) {
+			// link 要素用の右クリックメニューの表示対象を <all_urls> にしているため fileスキーマ以外を無視する
+			return;
+		}
+		return convertUrl2FilePath(linkUrl);
+	}
+};
 
 const convertUrl2FilePath = encodedUrl => {
 	const decodedURI = decodeURI(encodedUrl);
