@@ -1,6 +1,6 @@
 {
-	"name": "Open local file link by explorer",
-	"description": "ローカルファイルリンクをエクスプローラーで開く",
+	"name": "Open local folder by explorer",
+	"description": "Chromeからローカルフォルダーをエクスプローラーで開く",
 	"version": "0.0.1",
 	"manifest_version": 2,
 	"options_page": "setup/index.html",
