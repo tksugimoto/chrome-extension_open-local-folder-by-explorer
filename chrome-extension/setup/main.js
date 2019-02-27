@@ -1,4 +1,5 @@
 import common from '../common.js';
+import notificationUtil from '../notification-util.js';
 
 {
 	const downloadLink = document.getElementById('manifest-json-download-link');
@@ -60,6 +61,8 @@ import common from '../common.js';
 		};
 		chrome.runtime.sendNativeMessage(common.applicationName, message, response => {
 			console.info(response);
+
+			notificationUtil.showNotification(response);
 		});
 	};
 	openButton.addEventListener('click', execOpen);
