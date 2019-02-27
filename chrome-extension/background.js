@@ -44,7 +44,13 @@ chrome.runtime.onStartup.addListener(createContextMenu);
 
 chrome.contextMenus.onClicked.addListener((info) => {
 	const extractResult = extractFilePath(info);
-	if (!extractResult.isSucceeded) return;
+	if (!extractResult.isSucceeded) {
+		notificationUtil.showNotification({
+			resultMessage: 'ファイルパスではありません',
+			path: extractResult.target,
+		});
+		return;
+	}
 	const messageToNative = {
 		filePath: extractResult.path,
 	};
