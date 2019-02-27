@@ -43,10 +43,10 @@ chrome.runtime.onInstalled.addListener(createContextMenu);
 chrome.runtime.onStartup.addListener(createContextMenu);
 
 chrome.contextMenus.onClicked.addListener((info) => {
-	const filePath = extractFilePath(info);
-	if (!filePath) return;
+	const extractResult = extractFilePath(info);
+	if (!extractResult.isSucceeded) return;
 	const messageToNative = {
-		filePath,
+		filePath: extractResult.path,
 	};
 	chrome.runtime.sendNativeMessage(common.applicationName, messageToNative, response => {
 		console.info(response);
@@ -55,24 +55,37 @@ chrome.contextMenus.onClicked.addListener((info) => {
 	});
 });
 
+class ExtractResult {
+	constructor(target, path) {
+		this.target = target;
+		this.isSucceeded = !!path;
+		this.path = path;
+	}
+
+	static ofFailure(target) {
+		return new this(target, null);
+	}
+}
+
 const extractFilePath = info => {
 	if (info.menuItemId === CONTEXT_MENU_ID.PAGE) {
-		return convertUrl2FilePath(info.pageUrl);
+		const pageUrl = info.pageUrl;
+		return new ExtractResult(pageUrl, convertUrl2FilePath(pageUrl));
 	}
 	if (info.menuItemId === CONTEXT_MENU_ID.LINK) {
 		const linkUrl = info.linkUrl;
 		if (!linkUrl.startsWith('file://')) {
 			// link 要素用の右クリックメニューの表示対象を <all_urls> にしているため fileスキーマ以外を無視する
-			return;
+			return ExtractResult.ofFailure(linkUrl);
 		}
-		return convertUrl2FilePath(linkUrl);
+		return new ExtractResult(linkUrl, convertUrl2FilePath(linkUrl));
 	}
 	if (info.menuItemId === CONTEXT_MENU_ID.SELECTION) {
 		const selectionText = info.selectionText;
 		if (selectionText.startsWith('"') && selectionText.endsWith('"')) {
-			return selectionText.slice(1, -1);
+			return new ExtractResult(selectionText, selectionText.slice(1, -1));
 		}
-		return selectionText;
+		return new ExtractResult(selectionText, selectionText);
 	}
 };
 
