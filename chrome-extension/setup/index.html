@@ -27,9 +27,21 @@
 			content: attr(data-description) ": ";
 			color:dimgray;
 		}
+		#update-notification {
+			background-color: orange;
+			padding: 30px;
+			font-size: 150%;
+			display: none;
+		}
+		#update-notification:target {
+			display: block;
+		}
 	</style>
 </head>
 <body>
+	<div id="update-notification">
+		拡張機能が更新されました。再設定をお願いします。
+	</div>
 	<h1>
 		初期設定
 	</h1>
