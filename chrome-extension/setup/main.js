@@ -74,7 +74,10 @@ document.title = chrome.i18n.getMessage('setup_page_title');
 		const message = {
 			filePath,
 		};
-		chrome.runtime.sendNativeMessage(common.applicationName, message, response => {
+		chrome.runtime.sendMessage({
+			method: 'sendNativeMessage',
+			payload: message,
+		}, response => {
 			console.info(response);
 
 			notificationUtil.showNotification(response);

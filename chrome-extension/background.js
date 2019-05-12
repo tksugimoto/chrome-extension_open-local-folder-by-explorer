@@ -28,6 +28,14 @@ chrome.runtime.onStartup.addListener(createContextMenu);
 
 const nativeMessageConnection = new NativeMessageConnection(common.applicationName);
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+	if (message.method === 'sendNativeMessage') {
+		nativeMessageConnection.postMessage(message.payload).then(sendResponse);
+		// 非同期で sendResponse を使えるようにする
+		return true;
+	}
+});
+
 chrome.contextMenus.onClicked.addListener((info) => {
 	const extractResult = extractFilePath(info);
 	if (!extractResult.isSucceeded) {
