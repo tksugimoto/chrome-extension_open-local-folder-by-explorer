@@ -18,6 +18,6 @@
 	],
 	"background": {
 		"page": "background.html",
-		"persistent": false
+		"persistent": true
 	}
 }

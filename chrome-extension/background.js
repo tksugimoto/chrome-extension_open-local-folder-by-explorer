@@ -4,6 +4,7 @@ import {
 	createContextMenu,
 } from './context-menu.js';
 import notificationUtil from './notification-util.js';
+import NativeMessageConnection from './NativeMessageConnection.js';
 
 chrome.runtime.onInstalled.addListener(details => {
 	if (details.reason === 'update') {
@@ -25,6 +26,8 @@ chrome.runtime.onInstalled.addListener(details => {
 chrome.runtime.onInstalled.addListener(createContextMenu);
 chrome.runtime.onStartup.addListener(createContextMenu);
 
+const nativeMessageConnection = new NativeMessageConnection(common.applicationName);
+
 chrome.contextMenus.onClicked.addListener((info) => {
 	const extractResult = extractFilePath(info);
 	if (!extractResult.isSucceeded) {
@@ -37,7 +40,7 @@ chrome.contextMenus.onClicked.addListener((info) => {
 	const messageToNative = {
 		filePath: extractResult.path,
 	};
-	chrome.runtime.sendNativeMessage(common.applicationName, messageToNative, response => {
+	nativeMessageConnection.postMessage(messageToNative).then(response => {
 		console.info(response);
 
 		notificationUtil.showNotification(response);

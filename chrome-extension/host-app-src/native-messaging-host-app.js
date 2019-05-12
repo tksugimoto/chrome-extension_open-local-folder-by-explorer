@@ -5,7 +5,7 @@ const execFile = require('child_process').execFile;
 
 const lengthBytes = 4;
 
-process.stdin.once('data', _data => {
+process.stdin.on('data', _data => {
     const data = new Buffer(_data);
     const lengthBuffer = data.slice(0, lengthBytes);
     const bodyBuffer = data.slice(lengthBytes);
