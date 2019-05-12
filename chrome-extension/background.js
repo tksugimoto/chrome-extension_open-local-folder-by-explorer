@@ -10,6 +10,7 @@ chrome.runtime.onInstalled.addListener(details => {
 	if (details.reason === 'update') {
 		const updateRequiredPreviousVersions = [
 			'0.0.1',
+			'0.1.0',
 		];
 		if (updateRequiredPreviousVersions.includes(details.previousVersion)) {
 			chrome.tabs.create({
