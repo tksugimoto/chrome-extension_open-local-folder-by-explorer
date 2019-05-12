@@ -1,6 +1,6 @@
 import common from './common.js';
 import {
-	CONTEXT_MENU_ID,
+	CONTEXT_MENU,
 	createContextMenu,
 } from './context-menu.js';
 import notificationUtil from './notification-util.js';
@@ -57,11 +57,11 @@ class ExtractResult {
 }
 
 const extractFilePath = info => {
-	if (info.menuItemId === CONTEXT_MENU_ID.PAGE) {
+	if (info.menuItemId === CONTEXT_MENU.PAGE.id) {
 		const pageUrl = info.pageUrl;
 		return new ExtractResult(pageUrl, convertUrl2FilePath(pageUrl));
 	}
-	if (info.menuItemId === CONTEXT_MENU_ID.LINK) {
+	if (info.menuItemId === CONTEXT_MENU.LINK.id) {
 		const linkUrl = info.linkUrl;
 		if (!linkUrl.startsWith('file://')) {
 			// link 要素用の右クリックメニューの表示対象を <all_urls> にしているため fileスキーマ以外を無視する
@@ -69,7 +69,7 @@ const extractFilePath = info => {
 		}
 		return new ExtractResult(linkUrl, convertUrl2FilePath(linkUrl));
 	}
-	if (info.menuItemId === CONTEXT_MENU_ID.SELECTION) {
+	if (info.menuItemId === CONTEXT_MENU.SELECTION.id) {
 		const selectionText = info.selectionText;
 		if (selectionText.startsWith('"') && selectionText.endsWith('"')) {
 			return new ExtractResult(selectionText, selectionText.slice(1, -1));
