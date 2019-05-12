@@ -3,7 +3,10 @@ import notificationUtil from './notification-util.js';
 
 chrome.runtime.onInstalled.addListener(details => {
 	if (details.reason === 'update') {
-		if (details.previousVersion === '0.0.1') {
+		const updateRequiredPreviousVersions = [
+			'0.0.1',
+		];
+		if (updateRequiredPreviousVersions.includes(details.previousVersion)) {
 			chrome.tabs.create({
 				url: `${chrome.runtime.getManifest().options_page}#update-notification`,
 			});
