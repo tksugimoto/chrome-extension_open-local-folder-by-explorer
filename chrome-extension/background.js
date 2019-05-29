@@ -107,7 +107,7 @@ const extractFilePath = info => {
 };
 
 const convertUrl2FilePath = encodedUrl => {
-	const decodedURI = decodeURIComponent(encodedUrl);
+	const decodedURI = decodeURIComponent(encodedUrl.replace(/#.*/, ''));
 	if (decodedURI.startsWith('file:///')) {
 		return decodedURI.replace(/^file:\/\/\//, '').replace(/\//g, '\\');
 	}
