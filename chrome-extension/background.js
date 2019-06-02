@@ -107,7 +107,9 @@ const extractFilePath = info => {
 };
 
 const convertUrl2FilePath = encodedUrl => {
-	const decodedURI = decodeURI(encodedUrl);
+	// 1. hash除去 (例えば、PDFのページ指定時の #page=12)
+	// 2. %23 -> # 変換のために decodeURI ではなく decodeURIComponent を使用
+	const decodedURI = decodeURIComponent(encodedUrl.replace(/#.*/, ''));
 	if (decodedURI.startsWith('file:///')) {
 		return decodedURI.replace(/^file:\/\/\//, '').replace(/\//g, '\\');
 	}
