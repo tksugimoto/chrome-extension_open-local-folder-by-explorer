@@ -1,4 +1,8 @@
 import common from './common.js';
+import {
+	CONTEXT_MENU,
+	createContextMenu,
+} from './context-menu.js';
 import notificationUtil from './notification-util.js';
 
 chrome.runtime.onInstalled.addListener(details => {
@@ -17,38 +21,6 @@ chrome.runtime.onInstalled.addListener(details => {
 		chrome.runtime.openOptionsPage();
 	}
 });
-
-const CONTEXT_MENU_ID = {
-	PAGE: 'page',
-	LINK: 'link',
-	SELECTION: 'selection',
-};
-
-const createContextMenu = () => {
-	chrome.contextMenus.create({
-		title: 'フォルダをExplorerで開く',
-		contexts: ['page'],
-		documentUrlPatterns: [
-			'file:///*',
-		],
-		id: CONTEXT_MENU_ID.PAGE,
-	});
-	chrome.contextMenus.create({
-		title: 'リンク先をExplorerで開く（ローカルファイルの場合）',
-		contexts: ['link'],
-		targetUrlPatterns: [
-			// file:///* 指定だとローカルファイルリンクにメニューが表示されないため <all_urls> 指定している
-			// ※ targetUrlPatterns 指定を無しにしてもOk
-			'<all_urls>',
-		],
-		id: CONTEXT_MENU_ID.LINK,
-	});
-	chrome.contextMenus.create({
-		title: '選択文字列をExplorerで開く（ローカルファイルパスの場合）',
-		contexts: ['selection'],
-		id: CONTEXT_MENU_ID.SELECTION,
-	});
-};
 
 chrome.runtime.onInstalled.addListener(createContextMenu);
 chrome.runtime.onStartup.addListener(createContextMenu);
@@ -85,11 +57,11 @@ class ExtractResult {
 }
 
 const extractFilePath = info => {
-	if (info.menuItemId === CONTEXT_MENU_ID.PAGE) {
+	if (info.menuItemId === CONTEXT_MENU.PAGE.id) {
 		const pageUrl = info.pageUrl;
 		return new ExtractResult(pageUrl, convertUrl2FilePath(pageUrl));
 	}
-	if (info.menuItemId === CONTEXT_MENU_ID.LINK) {
+	if (info.menuItemId === CONTEXT_MENU.LINK.id) {
 		const linkUrl = info.linkUrl;
 		if (!linkUrl.startsWith('file://')) {
 			// link 要素用の右クリックメニューの表示対象を <all_urls> にしているため fileスキーマ以外を無視する
@@ -97,7 +69,7 @@ const extractFilePath = info => {
 		}
 		return new ExtractResult(linkUrl, convertUrl2FilePath(linkUrl));
 	}
-	if (info.menuItemId === CONTEXT_MENU_ID.SELECTION) {
+	if (info.menuItemId === CONTEXT_MENU.SELECTION.id) {
 		const selectionText = info.selectionText;
 		if (selectionText.startsWith('"') && selectionText.endsWith('"')) {
 			return new ExtractResult(selectionText, selectionText.slice(1, -1));

@@ -1,4 +1,10 @@
 import common from '../common.js';
+import {
+	CONTEXT_MENU,
+	saveContextMenuTitle,
+	getContextMenuTitle,
+	updateContextMenu,
+} from '../context-menu.js';
 import notificationUtil from '../notification-util.js';
 
 {
@@ -70,5 +76,28 @@ import notificationUtil from '../notification-util.js';
 		if (evt.key === 'Enter') {
 			execOpen();
 		}
+	});
+}
+
+{
+	const container = document.getElementById('context-menu-title-setting-container');
+
+	getContextMenuTitle().then(contextMenuTitle => {
+		Object.entries(contextMenuTitle).map(([key, currentTitle]) => {
+			const input = document.createElement('input');
+			input.value = currentTitle;
+			input.placeholder = CONTEXT_MENU[key].defaultTitle;
+			input.title = 'Enterで保存';
+			input.addEventListener('keydown', evt => {
+				if (evt.key === 'Enter') {
+					saveContextMenuTitle(key, input.value).then(updateContextMenu);
+				}
+			});
+
+			const li = document.createElement('li');
+			li.append(CONTEXT_MENU[key].description);
+			li.append(input);
+			container.append(li);
+		});
 	});
 }
