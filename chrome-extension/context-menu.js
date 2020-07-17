@@ -2,7 +2,7 @@ export const CONTEXT_MENU = {
 	PAGE: {
 		id: 'page',
 		description : "Parcourir les dossiers et les fichiers",
-		defaultTitle : "Open folder in Explorer",
+		defaultTitle : "Adresse du dossier d'installation dans le gestionnaire de fichier",
 	},
 	LINK: {
 		id: 'link',
