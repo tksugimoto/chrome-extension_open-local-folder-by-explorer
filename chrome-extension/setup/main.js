@@ -87,7 +87,7 @@ import notificationUtil from '../notification-util.js';
 			const input = document.createElement('input');
 			input.value = currentTitle;
 			input.placeholder = CONTEXT_MENU[key].defaultTitle;
-			input.title = 'Press Enter to save';
+			input.title = 'Appuyez sur la touche Entrée pour sauvegarder';
 			input.addEventListener('keydown', evt => {
 				if (evt.key === 'Enter') {
 					saveContextMenuTitle(key, input.value).then(updateContextMenu);

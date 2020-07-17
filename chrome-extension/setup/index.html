@@ -43,23 +43,23 @@
 </head>
 <body>
 	<div id="update-notification">
-		The extension has been updated. Please reconfigure it.
+		L'extension a été mise à jour. Veuillez la reconfigurer.
 	</div>
 	<h1>
-		Initialization
+		Initialisation
 	</h1>
-	<p>Those steps are required to allow the extension to be fully operational.</p>
+	<p>Ces mesures sont nécessaires pour permettre à l'extension d'être pleinement opérationnelle.</p>
 	<ol>
 		<li>
-			Install <a href="https://nodejs.org/ja/" target="_blank">Node.js</a>.<br>
-			※ The LTS recommended version is OK.
+			Installer <a href="https://nodejs.org/ja/" target="_blank">Node.js</a>.<br>
+			※ La version recommandée par le LTS est préférable.
 		</li>
 		<li>
-			Create a folder in a suitable location that will not be deleted.<br>
-			※ If the folder disappears due to deletion or movement, this initial setup needs to be re-enforced.
+			Créez un dossier dans un endroit approprié qui ne sera pas supprimé.<br>
+			※ Si le dossier disparaît en raison d'une suppression ou d'un déplacement, cette configuration initiale doit être réalisée de nouveau.
 		</li>
 		<li>
-			Save the following files in the folder you just created.
+			Enregistrez les fichiers suivants dans le dossier que vous venez de créer.
 			<ul>
 				<li>
 					<a id="manifest-json-download-link" download="manifest.json">manifest.json</a>
@@ -73,42 +73,42 @@
 			</ul>
 		</li>
 		<li>
-			Path to the folder you created :<br>
+			Chemin d'accès au dossier que vous avez créé :<br>
 			<input id="dirPath" placeholder="C:\path\to">
 		</li>
 		<li>
-			Registry file generation, perform registry edition either from manual edition OR from launching the generated file :
+			Génération du fichier de registre, effectuer l'édition du registre soit à partir de l'édition manuelle OU à partir du lancement du fichier généré :
 			<ul>
 				<li>
-					(ADVANCED users only) Manual configuration from the registry editor.
+					(Utilisateurs AVANCÉS uniquement) Configuration manuelle à partir de l'éditeur de registre.
 					<pre data-description="Key"><code id="reg-key"></code></pre>
 					<pre data-description="Value"><code id="reg-value"></code></pre>
 				</li>
 				<li>
-					(PREFERRED solution) Download the generated <a id="reg-download-link">Registry registration file</a> and launch it (double-click).
+					(Solution PRÉFÉRÉE) Téléchargez le fichier généré : <a id="reg-download-link">enregistrement du registre</a> et lancez-le (double-clic).
 					<pre><code id="reg-content"></code></pre>
 				</li>
 			</ul>
 		</li>
 		<li>
-			Operation check
+			Vérification du bon fonctionnement
 			<ol>
 				<li>
-					Add the path to a folder to Open in Explorer<br>
+					Ajoutez le chemin d'accès à un dossier à ouvrir dans Explorer<br>
 					<input id="filePathToOpen" value="C:\ProgramData\">
 				</li>
 				<li>
-					<button type="button" id="open">Open in Explorerく</button>
+					<button type="button" id="open">Ouvrir dans Explorerく</button>
 				</li>
 			</ol>
 		</li>
 	</ol>
 	<h1>
-		Right-click menu title to change
+		Cliquez sur le titre du menu avec le bouton droit de la souris pour le modifier
 	</h1>
 	<p>
-		Keyboard shortcut<br>
-		※ Press Enter to save.
+		Raccourci clavier<br>
+		※ Appuyez sur la touche Entrée pour sauvegarder.
 	</p>
 	<ul id="context-menu-title-setting-container"></ul>
 	<script type="module" src="./main.js"></script>

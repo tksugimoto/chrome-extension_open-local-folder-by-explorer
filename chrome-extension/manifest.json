@@ -1,6 +1,6 @@
 {
 	"name": "Open local folder by explorer",
-	"description": "Chromeからローカルフォルダーをエクスプローラーで開く",
+	"description": "Ouvrez un dossier local dans l'explorateur via un lien dans Chrome",
 	"version": "0.2.0",
 	"manifest_version": 2,
 	"icons": {
