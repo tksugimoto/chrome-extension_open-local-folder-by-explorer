@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>設定</title>
+	<title>Setup</title>
 	<style>
 		body {
 			font-size: large;
@@ -36,26 +36,30 @@
 		#update-notification:target {
 			display: block;
 		}
+		ol > li {
+			margin-top:7px;
+		}
 	</style>
 </head>
 <body>
 	<div id="update-notification">
-		拡張機能が更新されました。再設定をお願いします。
+		The extension has been updated. Please reconfigure it.
 	</div>
 	<h1>
-		初期設定
+		Initialization
 	</h1>
+	<p>Those steps are required to allow the extension to be fully operational.</p>
 	<ol>
 		<li>
-			<a href="https://nodejs.org/ja/" target="_blank">Node.js</a> をインストール<br>
-			※ LTS 推奨版でOK
+			Install <a href="https://nodejs.org/ja/" target="_blank">Node.js</a>.<br>
+			※ The LTS recommended version is OK.
 		</li>
 		<li>
-			削除されない適当な場所にフォルダを作成する<br>
-			※ フォルダが削除や移動によって存在しなくなると本初期設定の再実施が必要
+			Create a folder in a suitable location that will not be deleted.<br>
+			※ If the folder disappears due to deletion or movement, this initial setup needs to be re-enforced.
 		</li>
 		<li>
-			以下のファイルを作成したフォルダに保存
+			Save the following files in the folder you just created.
 			<ul>
 				<li>
 					<a id="manifest-json-download-link" download="manifest.json">manifest.json</a>
@@ -69,42 +73,42 @@
 			</ul>
 		</li>
 		<li>
-			作成したフォルダのpathを以下に入力<br>
+			Path to the folder you created :<br>
 			<input id="dirPath" placeholder="C:\path\to">
 		</li>
 		<li>
-			レジストリ登録
+			Registry file generation, perform registry edition either from manual edition OR from launching the generated file :
 			<ul>
 				<li>
-					レジストリエディターから手動で設定
+					(ADVANCED users only) Manual configuration from the registry editor.
 					<pre data-description="Key"><code id="reg-key"></code></pre>
 					<pre data-description="Value"><code id="reg-value"></code></pre>
 				</li>
 				<li>
-					レジストリ登録ファイルを <a id="reg-download-link">ダウンロード</a> して実行
+					(PREFERRED solution) Download the generated <a id="reg-download-link">Registry registration file</a> and launch it (double-click).
 					<pre><code id="reg-content"></code></pre>
 				</li>
 			</ul>
 		</li>
 		<li>
-			動作確認
+			Operation check
 			<ol>
 				<li>
-					Explorerで開く ディレクトリ/ファイル のパス<br>
+					Add the path to a folder to Open in Explorer<br>
 					<input id="filePathToOpen" value="C:\ProgramData\">
 				</li>
 				<li>
-					<button type="button" id="open">Explorerで開く</button>
+					<button type="button" id="open">Open in Explorerく</button>
 				</li>
 			</ol>
 		</li>
 	</ol>
 	<h1>
-		右クリックメニュータイトル変更
+		Right-click menu title to change
 	</h1>
 	<p>
-		キーボードショートカット用<br>
-		※ Enterで保存
+		Keyboard shortcut<br>
+		※ Press Enter to save.
 	</p>
 	<ul id="context-menu-title-setting-container"></ul>
 	<script type="module" src="./main.js"></script>

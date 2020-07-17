@@ -1,18 +1,18 @@
 export const CONTEXT_MENU = {
 	PAGE: {
 		id: 'page',
-		description: 'フォルダ・ファイル閲覧',
-		defaultTitle: 'フォルダをExplorerで開く',
+		description: 'Browse folders and files',
+		defaultTitle: 'Open folder in Explorer',
 	},
 	LINK: {
 		id: 'link',
-		description: 'リンク',
-		defaultTitle: 'リンク先をExplorerで開く（ローカルファイルの場合）',
+		description: 'Link',
+		defaultTitle: 'Open the link destination in Explorer (for local files) ',
 	},
 	SELECTION: {
 		id: 'selection',
-		description: 'テキスト選択',
-		defaultTitle: '選択文字列をExplorerで開く（ローカルファイルパスの場合）',
+		description: 'Text selection',
+		defaultTitle: 'Open the selected string in Explorer (for local file path）',
 	},
 };
 
@@ -21,7 +21,7 @@ const generateStorageKey = key => `contextMenus.title.${key}`;
 export const saveContextMenuTitle = (key, title) => {
 	return new Promise((resolve, reject) => {
 		if (!CONTEXT_MENU.hasOwnProperty(key)) {
-			return reject('サポートしていないContextMenu typeです');
+			return reject('Unsupported ContextMenu type');
 		}
 		const items = {
 			[generateStorageKey(key)]: title,
