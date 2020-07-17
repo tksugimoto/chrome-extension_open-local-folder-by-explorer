@@ -2,17 +2,17 @@ export const CONTEXT_MENU = {
 	PAGE: {
 		id: 'page',
 		description : "Parcourir les dossiers et les fichiers",
-		defaultTitle : "Adresse du dossier d'installation dans le gestionnaire de fichier",
+		defaultTitle : "Adresse du dossier d'installation dans le gestionnaire de fichiers",
 	},
 	LINK: {
 		id: 'link',
 		description : "Lien",
-		defaultTitle : 'Open the link destination in Explorer (for local files)',
+		defaultTitle : "Ouvrez la destination du lien dans l'explorateur (pour les fichiers locaux)",
 	},
 	SELECTION: {
 		id: 'selection',
 		description : "Sélection de textes",
-		defaultTitle : "Open the selected string in Explorer (for local file path）",
+		defaultTitle : "Ouvrez la chaîne sélectionnée dans l'explorateur (pour le fichier local path",
 	},
 };
 
