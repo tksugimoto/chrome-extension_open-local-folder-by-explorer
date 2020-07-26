@@ -1,3 +1,5 @@
+( **English** / [日本語(Japanese)](README_ja.md) )
+
 # Chrome Extension to open local folder in Explorer from Chrome
 
 ## Function.

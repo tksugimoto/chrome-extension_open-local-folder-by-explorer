@@ -1,3 +1,5 @@
+( [English](README.md) / **日本語(Japanese)** )
+
 # Chromeからローカルフォルダーをエクスプローラーで開くChrome拡張
 
 ## 機能
