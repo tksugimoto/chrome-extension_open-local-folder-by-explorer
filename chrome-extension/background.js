@@ -29,7 +29,7 @@ chrome.contextMenus.onClicked.addListener((info) => {
 	const extractResult = extractFilePath(info);
 	if (!extractResult.isSucceeded) {
 		notificationUtil.showNotification({
-			resultMessage: 'Not a file path',
+			resultMessage: chrome.i18n.getMessage('not_a_file_path'),
 			path: extractResult.target,
 		});
 		return;

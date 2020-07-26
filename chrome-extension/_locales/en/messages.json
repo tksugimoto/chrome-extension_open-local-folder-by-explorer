@@ -1,0 +1,33 @@
+{
+	"_locale_code": {
+        "message": "en",
+        "description": "To specify the language used for multilingual support in the html file"
+    },
+	"setup_page_title": {
+		"message": "Setup"
+	},
+	"not_a_file_path": {
+		"message": "Not a file path"
+	},
+	"context_menu_page_description": {
+		"message": "Browse folders and files"
+	},
+	"context_menu_page_default_title": {
+		"message": "Open folder in Explorer"
+	},
+	"context_menu_link_description": {
+		"message": "Link"
+	},
+	"context_menu_link_default_title": {
+		"message": "Open the link destination in Explorer (for local files)"
+	},
+	"context_menu_selection_description": {
+		"message": "Text selection"
+	},
+	"context_menu_selection_default_title": {
+		"message": "Open the selected string in Explorer (for local file path)"
+	},
+	"press_enter_to_save": {
+		"message": "Press Enter to save"
+	}
+}

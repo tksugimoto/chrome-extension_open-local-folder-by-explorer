@@ -1,18 +1,18 @@
 export const CONTEXT_MENU = {
 	PAGE: {
 		id: 'page',
-		description: 'Browse folders and files',
-		defaultTitle: 'Open folder in Explorer',
+		description: chrome.i18n.getMessage('context_menu_page_description'),
+		defaultTitle: chrome.i18n.getMessage('context_menu_page_default_title'),
 	},
 	LINK: {
 		id: 'link',
-		description: 'Link',
-		defaultTitle: 'Open the link destination in Explorer (for local files) ',
+		description: chrome.i18n.getMessage('context_menu_link_description'),
+		defaultTitle: chrome.i18n.getMessage('context_menu_link_default_title'),
 	},
 	SELECTION: {
 		id: 'selection',
-		description: 'Text selection',
-		defaultTitle: 'Open the selected string in Explorer (for local file path）',
+		description: chrome.i18n.getMessage('context_menu_selection_description'),
+		defaultTitle: chrome.i18n.getMessage('context_menu_selection_default_title'),
 	},
 };
 

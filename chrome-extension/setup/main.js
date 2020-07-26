@@ -8,6 +8,15 @@ import {
 import notificationUtil from '../notification-util.js';
 
 {
+	const localeCode = chrome.i18n.getMessage('_locale_code');
+	document.querySelectorAll(`[lang="${localeCode}"]`).forEach(e => {
+		e.style.display = 'inline';
+	});
+}
+
+document.title = chrome.i18n.getMessage('setup_page_title');
+
+{
 	const downloadLink = document.getElementById('manifest-json-download-link');
 	const manifestJsonContent = common.generateManifestJson();
 	const blob = new Blob([manifestJsonContent], {
@@ -29,8 +38,8 @@ import notificationUtil from '../notification-util.js';
 	};
 
 	const dirPath = document.getElementById('dirPath');
-	const downloadLink = document.getElementById('reg-download-link');
-	downloadLink.download = 'manifest.reg';
+	const downloadLinks = document.querySelectorAll('.reg-download-link');
+	downloadLinks.forEach(e => e.download = 'manifest.reg');
 	const update = () => {
 		const bom = '\uFEFF';
 		const registryInfo = common.generateRegistryInfo(dirPath.value || dirPath.placeholder);
@@ -39,7 +48,7 @@ import notificationUtil from '../notification-util.js';
 		const blob = new Blob([convertToUtf16(bom + regFileContent).buffer], {
 			type: 'text/plain',
 		});
-		downloadLink.href = URL.createObjectURL(blob);
+		downloadLinks.forEach(e => e.href = URL.createObjectURL(blob));
 
 		document.getElementById('reg-content').innerText = regFileContent;
 		document.getElementById('reg-key').innerText = registryInfo.key;
@@ -87,7 +96,7 @@ import notificationUtil from '../notification-util.js';
 			const input = document.createElement('input');
 			input.value = currentTitle;
 			input.placeholder = CONTEXT_MENU[key].defaultTitle;
-			input.title = 'Press Enter to save';
+			input.title = chrome.i18n.getMessage('press_enter_to_save');
 			input.addEventListener('keydown', evt => {
 				if (evt.key === 'Enter') {
 					saveContextMenuTitle(key, input.value).then(updateContextMenu);
