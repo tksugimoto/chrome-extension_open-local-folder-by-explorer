@@ -33,19 +33,19 @@ const send = (messageObject) => {
 };
 
 
-/** Explorerで開く
- * - path が ディレクトリ(末尾が\\) の場合: ディレクトリを開く
- * - path が ファイル の場合: 選択した状態で開く
+/** Open in Explorer
+ * - path is a directory (ending in \2004): Open the directory
+ * - path is a file: Open with the selection
  * @param {string} path
  */
 const openByExplorer = path => {
     path = path.replace(/\\+$/, '');
     fs.stat(path, (err, stats) => {
         if (err) {
-            // file or directory が無い
+            // file or directory unavalaible
             send({
                 path,
-                resultMessage: 'ファイル/フォルダが存在しません',
+                resultMessage: 'The file/folder does not exist.',
                 err,
             });
             return;
@@ -54,13 +54,13 @@ const openByExplorer = path => {
             execFile('explorer', [path]);
             send({
                 path,
-                resultMessage: 'フォルダを開きました',
+                resultMessage: 'The folder is opened.',
             });
         } else {
             execFile('explorer', ['/select,', path]);
             send({
                 path,
-                resultMessage: 'ファイルのあるフォルダを開きました',
+                resultMessage: 'The folder is opened with the files.',
             });
         }
     });
