@@ -64,7 +64,7 @@ const extractFilePath = info => {
 	if (info.menuItemId === CONTEXT_MENU.LINK.id) {
 		const linkUrl = info.linkUrl;
 		if (!linkUrl.startsWith('file://')) {
-			// link 要素用の右クリックメニューの表示対象を <all_urls> にしているため fileスキーマ以外を無視する
+			// link Right-click menu for elements is set to <all_urls>, so all but the file schema is ignored
 			return ExtractResult.ofFailure(linkUrl);
 		}
 		return new ExtractResult(linkUrl, convertUrl2FilePath(linkUrl));
@@ -79,8 +79,8 @@ const extractFilePath = info => {
 };
 
 const convertUrl2FilePath = encodedUrl => {
-	// 1. hash除去 (例えば、PDFのページ指定時の #page=12)
-	// 2. %23 -> # 変換のために decodeURI ではなく decodeURIComponent を使用
+	// 1. Remove hash (e.g., #page=12 for PDF pages)
+	// 2. %23 -> # Use decodeURIComponent instead of decodeURI for conversion
 	const decodedURI = decodeURIComponent(encodedUrl.replace(/#.*/, ''));
 	if (decodedURI.startsWith('file:///')) {
 		return decodedURI.replace(/^file:\/\/\//, '').replace(/\//g, '\\');
