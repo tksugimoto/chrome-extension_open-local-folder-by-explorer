@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>設定</title>
+	<title>Setup</title>
 	<style>
 		body {
 			font-size: large;
@@ -36,26 +36,30 @@
 		#update-notification:target {
 			display: block;
 		}
+		ol > li {
+			margin-top:7px;
+		}
 	</style>
 </head>
 <body>
 	<div id="update-notification">
-		拡張機能が更新されました。再設定をお願いします。
+		L'extension a été mise à jour. Veuillez la reconfigurer.
 	</div>
 	<h1>
-		初期設定
+		Initialisation
 	</h1>
+	<p>Ces mesures sont nécessaires pour permettre à l'extension d'être pleinement opérationnelle.</p>
 	<ol>
 		<li>
-			<a href="https://nodejs.org/ja/" target="_blank">Node.js</a> をインストール<br>
-			※ LTS 推奨版でOK
+			Installer <a href="https://nodejs.org/ja/" target="_blank">Node.js</a>.<br>
+			※ La version LTS est recommandée.
 		</li>
 		<li>
-			削除されない適当な場所にフォルダを作成する<br>
-			※ フォルダが削除や移動によって存在しなくなると本初期設定の再実施が必要
+			Créez un dossier dans un endroit approprié qui ne sera pas supprimé.<br>
+			※ Si le dossier disparaît en raison d'une suppression ou d'un déplacement, cette configuration initiale doit être réalisée de nouveau.
 		</li>
 		<li>
-			以下のファイルを作成したフォルダに保存
+			Enregistrez les fichiers suivants dans le dossier que vous venez de créer.
 			<ul>
 				<li>
 					<a id="manifest-json-download-link" download="manifest.json">manifest.json</a>
@@ -69,42 +73,42 @@
 			</ul>
 		</li>
 		<li>
-			作成したフォルダのpathを以下に入力<br>
+			Chemin d'accès au dossier que vous avez créé :<br>
 			<input id="dirPath" placeholder="C:\path\to">
 		</li>
 		<li>
-			レジストリ登録
+			Génération du fichier de registre, effectuer l'édition du registre soit à partir de l'édition manuelle OU à partir du lancement du fichier généré :
 			<ul>
 				<li>
-					レジストリエディターから手動で設定
+					<b>(Utilisateurs AVANCÉS uniquement)</b> Configuration manuelle à partir de l'éditeur de registre.
 					<pre data-description="Key"><code id="reg-key"></code></pre>
 					<pre data-description="Value"><code id="reg-value"></code></pre>
 				</li>
 				<li>
-					レジストリ登録ファイルを <a id="reg-download-link">ダウンロード</a> して実行
+					<b>(Solution PRÉFÉRÉE)</b> Téléchargez le fichier généré : <a id="reg-download-link">clé de registre</a> et lancez-le (double-clic).
 					<pre><code id="reg-content"></code></pre>
 				</li>
 			</ul>
 		</li>
 		<li>
-			動作確認
+			Vérification du bon fonctionnement
 			<ol>
 				<li>
-					Explorerで開く ディレクトリ/ファイル のパス<br>
+					Ajoutez le chemin d'accès à un dossier à ouvrir dans Explorer<br>
 					<input id="filePathToOpen" value="C:\ProgramData\">
 				</li>
 				<li>
-					<button type="button" id="open">Explorerで開く</button>
+					<button type="button" id="open">Ouvrir dans Explorerく</button>
 				</li>
 			</ol>
 		</li>
 	</ol>
 	<h1>
-		右クリックメニュータイトル変更
+		Cliquez sur le titre du menu avec le bouton droit de la souris pour le modifier
 	</h1>
 	<p>
-		キーボードショートカット用<br>
-		※ Enterで保存
+		Raccourci clavier<br>
+		※ Appuyez sur la touche Entrée pour sauvegarder.
 	</p>
 	<ul id="context-menu-title-setting-container"></ul>
 	<script type="module" src="./main.js"></script>

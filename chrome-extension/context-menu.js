@@ -1,18 +1,18 @@
 export const CONTEXT_MENU = {
 	PAGE: {
 		id: 'page',
-		description: 'フォルダ・ファイル閲覧',
-		defaultTitle: 'フォルダをExplorerで開く',
+		description : "Parcourir les dossiers et les fichiers",
+		defaultTitle : "Adresse du dossier d'installation dans le gestionnaire de fichiers",
 	},
 	LINK: {
 		id: 'link',
-		description: 'リンク',
-		defaultTitle: 'リンク先をExplorerで開く（ローカルファイルの場合）',
+		description : "Lien",
+		defaultTitle : "Ouvrez la destination du lien dans l'explorateur (pour les fichiers locaux)",
 	},
 	SELECTION: {
 		id: 'selection',
-		description: 'テキスト選択',
-		defaultTitle: '選択文字列をExplorerで開く（ローカルファイルパスの場合）',
+		description : "Sélection de textes",
+		defaultTitle : "Ouvrez la chaîne sélectionnée dans l'explorateur (pour le fichier local path",
 	},
 };
 
@@ -21,7 +21,7 @@ const generateStorageKey = key => `contextMenus.title.${key}`;
 export const saveContextMenuTitle = (key, title) => {
 	return new Promise((resolve, reject) => {
 		if (!CONTEXT_MENU.hasOwnProperty(key)) {
-			return reject('サポートしていないContextMenu typeです');
+			return reject('Type de menu contextuel non pris en charge');
 		}
 		const items = {
 			[generateStorageKey(key)]: title,
@@ -62,8 +62,8 @@ export const createContextMenu = () => {
 			title: contextMenuTitle.LINK,
 			contexts: ['link'],
 			targetUrlPatterns: [
-				// file:///* 指定だとローカルファイルリンクにメニューが表示されないため <all_urls> 指定している
-				// ※ targetUrlPatterns 指定を無しにしてもOk
+				// file:///* If you specify <all_urls>, the menu will not be displayed on the local file link.)
+				// ※ targetUrlPatterns can be left out.
 				'<all_urls>',
 			],
 			id: CONTEXT_MENU.LINK.id,

@@ -1,39 +1,39 @@
-# Chromeからローカルフォルダーをエクスプローラーで開くChrome拡張
+# Extension Chrome pour ouvrir un dossier local dans l'explorateur de Chrome
 
-## 機能
-- フォルダをExplorerで開く
-- （ファイルの場合）ファイルを選択した状態で親フォルダをExplorerで開く
-
-
-## 対象可能なフォルダ・ファイル
-- 現在のタブ（URLが `file://` 始まりの場合）
-- リンク先URL（URLが `file://` 始まりの場合）
-- 選択文字列（選択文字列が `C:\`, `\\ComputerName\` などで始まる場合）
-    - 先頭と末尾の `"` （ダブルクォーテーション）は無視する（先頭末尾両方に存在する場合のみ）
+## Fonction
+- Ouvrez le dossier dans Explorer
+- (Pour les fichiers) Ouvrez le dossier parent dans l'explorateur avec le fichier sélectionné.
 
 
-## :warning: 注意点
-Chromeからホスト側を操作するため、以下の作業が必要
-- Node.jsのインストール
-- レジストリの変更
+## Dossiers et fichiers ciblés
+- Onglet courant (si l'URL commence par "fichier://`)
+- L'URL du lien (si l'URL commence par "file://`)
+- Chaîne de sélection (la chaîne de sélection commence par `C:\\\\, `C:\, `C:ComputerName`, etc.) (condition)
+    - Ignorez les guillemets de début et de fin (double guillemets) s'ils sont présents aux deux extrémités (uniquement)
 
 
-## 使い方
-1. 拡張をインストール
-1. インストール時に開かれる `設定` タブに従って設定する
-    - 再設定が必要な場合は、拡張のオプションページから可能
-1. ページ・リンク・選択テキストの右クリックメニューから「～～をExplorerで開く」を選択
-    - フォルダをExplorerで開く
-    - リンク先をExplorerで開く（ローカルファイルの場合）
-    - 選択文字列をExplorerで開く（ローカルファイルパスの場合）
+## : avertissement : Notes
+Afin de contrôler le côté hôte de Chrome, vous devez faire ce qui suit
+- Installation de Node.js
+- Modifications du registre
 
-### 右クリックメニューのタイトル変更
-#### メリット
-アルファベット始まりに変更するとキーボードで選択が可能
 
-#### 変更方法
-1. 設定ページ（オプションページ）を開く
-1. `右クリックメニュータイトル変更` 部分で右クリックメニューの種類ごとに新タイトルを設定
+## Déroulement
+1. Installer l'extension
+2. Configurez-la selon l'onglet "Configuration" ouvert au moment de l'installation.
+    - Si vous avez besoin de la reconfigurer, vous pouvez le faire à partir de la page d'options de l'extension
+3. Sélectionnez "Ouvrir ... dans l'explorateur" dans le menu contextuel de la page, du lien et du texte sélectionné
+    - Ouvrir le dossier dans l'explorateur
+    - Ouvrez la destination du lien dans l'explorateur (pour les fichiers locaux)
+    - Ouvrez la chaîne de caractères sélectionnée dans l'explorateur (pour le chemin d'accès au fichier local)
 
-## アイコン
-[アイコン素材ダウンロードサイト「icooon-mono」](http://icooon-mono.com/) の [フォルダのアイコン素材　その2](http://icooon-mono.com/00019-%e3%83%95%e3%82%a9%e3%83%ab%e3%83%80%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90-%e3%81%9d%e3%81%ae2/) を使わせていただきました。
+### Changer le titre du menu du clic droit
+#### Avantages
+Si vous le passez en mode alphabétique, vous pouvez sélectionner le titre avec le clavier.
+
+#### Comment changer
+1. Ouvrez la page des paramètres (page d'options)
+Nouveaux titres pour chaque type de menu (clic-droit) dans la section "Changer le titre du menu (clic-droit)".
+
+## Icônes
+Nous avons utilisé les icônes Material suivantes pouvant être téléchargées à partir de : [icon material download site "icooon-mono"](http://icooon-mono.com/) & [Folder Icons Web graphics Part 2](http://icooon-mono.com/00019-%e3%83%95%e3%82%a9%e3%83%ab%e3%83%80%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90-%e3%81%9d%e3%81%ae2/).

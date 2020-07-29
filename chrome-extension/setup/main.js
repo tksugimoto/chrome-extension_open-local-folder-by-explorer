@@ -18,13 +18,13 @@ import notificationUtil from '../notification-util.js';
 
 {
 	/**
-	 * 文字列をUTF-16用にUint16Arrayに変換する
+	 * Convert a string to a Uint16Array for UTF-16
 	 * @param {String} str
 	 * @returns {Uint16Array}
 	 */
 	const convertToUtf16 = str => {
 		const codePointArray = Array.from(str).map(c => c.codePointAt(0));
-		// TODO: サロゲートペア（codePointが0xFFFFを超える場合）対応
+		// TODO: Surrogate Pairs (when the code point exceeds 0xFFFF)
 		return new Uint16Array(codePointArray);
 	};
 
@@ -87,7 +87,7 @@ import notificationUtil from '../notification-util.js';
 			const input = document.createElement('input');
 			input.value = currentTitle;
 			input.placeholder = CONTEXT_MENU[key].defaultTitle;
-			input.title = 'Enterで保存';
+			input.title = 'Appuyez sur la touche Entrée pour sauvegarder';
 			input.addEventListener('keydown', evt => {
 				if (evt.key === 'Enter') {
 					saveContextMenuTitle(key, input.value).then(updateContextMenu);
