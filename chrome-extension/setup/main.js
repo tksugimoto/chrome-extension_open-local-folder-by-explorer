@@ -33,7 +33,7 @@ document.title = chrome.i18n.getMessage('setup_page_title');
 	 */
 	const convertToUtf16 = str => {
 		const codePointArray = Array.from(str).map(c => c.codePointAt(0));
-		// TODO: Surrogate Pairs (when the code point exceeds 0xFFFF)
+		// TODO: Supports surrogate pairs (if codePoint is greater than 0xFFFF)
 		return new Uint16Array(codePointArray);
 	};
 

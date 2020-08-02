@@ -34,8 +34,8 @@ const send = (messageObject) => {
 
 
 /** Open in Explorer
- * - path is a directory (ending in \2004): Open the directory
- * - path is a file: Open with the selection
+ * - path is a directory (ending in \\): Open the directory
+ * - path is a file: Open directory with files selected
  * @param {string} path
  */
 const openByExplorer = path => {

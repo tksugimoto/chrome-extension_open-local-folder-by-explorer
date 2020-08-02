@@ -62,8 +62,8 @@ export const createContextMenu = () => {
 			title: contextMenuTitle.LINK,
 			contexts: ['link'],
 			targetUrlPatterns: [
-				// file:///* The menu is not shown in the local file link, so <all_urls> is specified
-				// ※ targetUrlPatterns It's okay if you don't want to specify it.
+				// If "file:///*" is specified, the menu is not displayed on the local file link, so <all_urls> is specified.
+				// * It is also good to delete the targetUrlPatterns specification.
 				'<all_urls>',
 			],
 			id: CONTEXT_MENU.LINK.id,

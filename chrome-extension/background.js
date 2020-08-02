@@ -80,7 +80,7 @@ const extractFilePath = info => {
 
 const convertUrl2FilePath = encodedUrl => {
 	// 1. Remove hash (e.g., #page=12 for PDF pages)
-	// 2. %23 -> # Use decodeURIComponent instead of decodeURI for conversion
+	// 2. Use decodeURIComponent instead of decodeURI for %23 to # conversion
 	const decodedURI = decodeURIComponent(encodedUrl.replace(/#.*/, ''));
 	if (decodedURI.startsWith('file:///')) {
 		return decodedURI.replace(/^file:\/\/\//, '').replace(/\//g, '\\');

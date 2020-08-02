@@ -10,8 +10,8 @@
 ## Targetable folders and files.
 - Current tab (if the URL starts with `file://`)
 - The URL of the link (if the URL begins with `file://`)
-- Selection string (the selection string starts with `C:\\`, `C:\`, `C:ComputerName`, etc.) (If)
-    - Ignore leading and trailing `"` (double quotation marks) if they are present at both ends. (only)
+- Selection string (if the selection string begins with `C:\`, `\\ComputerName\`, etc.)
+    - The `"` (double quotation) at the beginning and end is ignored only when it exists at both the beginning and end.
 
 
 ## :warning: Notes.
@@ -29,7 +29,7 @@ In order to control the host side from Chrome, you need to do the following:
     - Open the link destination in Explorer (for local files)
     - Open the selected string in Explorer (for local file path)
 
-### Changing the title of the right-click menu.
+### Changing the title of the context menu.
 #### Benefits.
 If you change it to alphabetic, you can select it with the keyboard.
 
