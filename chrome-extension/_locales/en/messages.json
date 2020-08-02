@@ -1,4 +1,10 @@
 {
+	"extension_name": {
+		"message": "Open local folder by explorer"
+	},
+	"extension_description": {
+		"message": "Open local folder in explorer from Chrome"
+	},
 	"_locale_code": {
         "message": "en",
         "description": "To specify the language used for multilingual support in the html file"

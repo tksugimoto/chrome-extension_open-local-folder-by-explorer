@@ -1,6 +1,6 @@
 {
-	"name": "Open local folder by explorer",
-	"description": "Chromeからローカルフォルダーをエクスプローラーで開く",
+	"name": "__MSG_extension_name__",
+	"description": "__MSG_extension_description__",
 	"version": "0.2.0",
 	"manifest_version": 2,
 	"default_locale": "en",

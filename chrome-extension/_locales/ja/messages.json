@@ -1,4 +1,10 @@
 {
+	"extension_name": {
+		"message": "Open local folder by explorer"
+	},
+	"extension_description": {
+		"message": "Chromeからローカルフォルダーをエクスプローラーで開く"
+	},
 	"_locale_code": {
 		"message": "ja",
         "description": "htmlファイル中の多言語対応のための使用言語の特定用"
