@@ -1,39 +1,41 @@
-# Chromeからローカルフォルダーをエクスプローラーで開くChrome拡張
+( **English** / [日本語(Japanese)](README_ja.md) )
 
-## 機能
-- フォルダをExplorerで開く
-- （ファイルの場合）ファイルを選択した状態で親フォルダをExplorerで開く
+# Chrome Extension to open local folder in Explorer from Chrome
 
-
-## 対象可能なフォルダ・ファイル
-- 現在のタブ（URLが `file://` 始まりの場合）
-- リンク先URL（URLが `file://` 始まりの場合）
-- 選択文字列（選択文字列が `C:\`, `\\ComputerName\` などで始まる場合）
-    - 先頭と末尾の `"` （ダブルクォーテーション）は無視する（先頭末尾両方に存在する場合のみ）
+## Function.
+- Open the folder in Explorer
+- (For files) Open the parent folder in Explorer with the file selected.
 
 
-## :warning: 注意点
-Chromeからホスト側を操作するため、以下の作業が必要
-- Node.jsのインストール
-- レジストリの変更
+## Targetable folders and files.
+- Current tab (if the URL starts with `file://`)
+- The URL of the link (if the URL begins with `file://`)
+- Selection string (if the selection string begins with `C:\`, `\\ComputerName\`, etc.)
+    - The `"` (double quotation) at the beginning and end is ignored only when it exists at both the beginning and end.
 
 
-## 使い方
-1. 拡張をインストール
-1. インストール時に開かれる `設定` タブに従って設定する
-    - 再設定が必要な場合は、拡張のオプションページから可能
-1. ページ・リンク・選択テキストの右クリックメニューから「～～をExplorerで開く」を選択
-    - フォルダをExplorerで開く
-    - リンク先をExplorerで開く（ローカルファイルの場合）
-    - 選択文字列をExplorerで開く（ローカルファイルパスの場合）
+## :warning: Notes.
+In order to control the host side from Chrome, you need to do the following:
+- Install Node.js
+- Registry Changes
 
-### 右クリックメニューのタイトル変更
-#### メリット
-アルファベット始まりに変更するとキーボードで選択が可能
 
-#### 変更方法
-1. 設定ページ（オプションページ）を開く
-1. `右クリックメニュータイトル変更` 部分で右クリックメニューの種類ごとに新タイトルを設定
+## Usage.
+1. Install the extension
+2. Configure it according to the `Setup` tab opened at the time of installation.
+    - If you need to reconfigure it, you can do so from the extension's options page
+3. Select "Open ... in Explorer" from the context menu of page, link, and selected text
+    - Open folder in Explorer
+    - Open the link destination in Explorer (for local files)
+    - Open the selected string in Explorer (for local file path)
 
-## アイコン
-[アイコン素材ダウンロードサイト「icooon-mono」](http://icooon-mono.com/) の [フォルダのアイコン素材　その2](http://icooon-mono.com/00019-%e3%83%95%e3%82%a9%e3%83%ab%e3%83%80%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90-%e3%81%9d%e3%81%ae2/) を使わせていただきました。
+### Changing the title of the context menu.
+#### Benefits.
+If you change it to alphabetic, you can select it with the keyboard.
+
+#### How to change.
+1. Open the settings page (option page)
+1. Set a new title for each type of context menu in the `"Change the context menu title"` part
+
+## Icons.
+We have used the following material icons which can be downloaded from : [icon material download site "icooon-mono"](http://icooon-mono.com/) [Folder Icons Web graphics Part 2](http://icooon-mono.com/00019-%e3%83%95%e3%82%a9%e3%83%ab%e3%83%80%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90-%e3%81%9d%e3%81%ae2/).

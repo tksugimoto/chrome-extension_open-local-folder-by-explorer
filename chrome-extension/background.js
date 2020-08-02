@@ -29,7 +29,7 @@ chrome.contextMenus.onClicked.addListener((info) => {
 	const extractResult = extractFilePath(info);
 	if (!extractResult.isSucceeded) {
 		notificationUtil.showNotification({
-			resultMessage: 'ファイルパスではありません',
+			resultMessage: chrome.i18n.getMessage('not_a_file_path'),
 			path: extractResult.target,
 		});
 		return;
@@ -79,8 +79,8 @@ const extractFilePath = info => {
 };
 
 const convertUrl2FilePath = encodedUrl => {
-	// 1. hash除去 (例えば、PDFのページ指定時の #page=12)
-	// 2. %23 -> # 変換のために decodeURI ではなく decodeURIComponent を使用
+	// 1. Remove hash (e.g., #page=12 for PDF pages)
+	// 2. Use decodeURIComponent instead of decodeURI for %23 to # conversion
 	const decodedURI = decodeURIComponent(encodedUrl.replace(/#.*/, ''));
 	if (decodedURI.startsWith('file:///')) {
 		return decodedURI.replace(/^file:\/\/\//, '').replace(/\//g, '\\');

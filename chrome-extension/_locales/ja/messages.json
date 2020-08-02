@@ -1,0 +1,42 @@
+{
+	"_locale_code": {
+		"message": "ja",
+        "description": "htmlファイル中の多言語対応のための使用言語の特定用"
+	},
+	"setup_page_title": {
+		"message": "設定"
+	},
+	"not_a_file_path": {
+		"message": "ファイルパスではありません"
+	},
+	"result_does_not_exist": {
+		"message": "ファイル/フォルダが存在しません"
+	},
+	"result_directory_opened": {
+		"message": "フォルダを開きました"
+	},
+	"result_file_opened": {
+		"message": "ファイルのあるフォルダを開きました"
+	},
+	"context_menu_page_description": {
+		"message": "フォルダ・ファイル閲覧"
+	},
+	"context_menu_page_default_title": {
+		"message": "フォルダをExplorerで開く"
+	},
+	"context_menu_link_description": {
+		"message": "リンク"
+	},
+	"context_menu_link_default_title": {
+		"message": "リンク先をExplorerで開く（ローカルファイルの場合）"
+	},
+	"context_menu_selection_description": {
+		"message": "テキスト選択"
+	},
+	"context_menu_selection_default_title": {
+		"message": "選択文字列をExplorerで開く（ローカルファイルパスの場合）"
+	},
+	"press_enter_to_save": {
+		"message": "Enterで保存"
+	}
+}

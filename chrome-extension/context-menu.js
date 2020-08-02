@@ -1,18 +1,18 @@
 export const CONTEXT_MENU = {
 	PAGE: {
 		id: 'page',
-		description: 'フォルダ・ファイル閲覧',
-		defaultTitle: 'フォルダをExplorerで開く',
+		description: chrome.i18n.getMessage('context_menu_page_description'),
+		defaultTitle: chrome.i18n.getMessage('context_menu_page_default_title'),
 	},
 	LINK: {
 		id: 'link',
-		description: 'リンク',
-		defaultTitle: 'リンク先をExplorerで開く（ローカルファイルの場合）',
+		description: chrome.i18n.getMessage('context_menu_link_description'),
+		defaultTitle: chrome.i18n.getMessage('context_menu_link_default_title'),
 	},
 	SELECTION: {
 		id: 'selection',
-		description: 'テキスト選択',
-		defaultTitle: '選択文字列をExplorerで開く（ローカルファイルパスの場合）',
+		description: chrome.i18n.getMessage('context_menu_selection_description'),
+		defaultTitle: chrome.i18n.getMessage('context_menu_selection_default_title'),
 	},
 };
 
@@ -21,7 +21,7 @@ const generateStorageKey = key => `contextMenus.title.${key}`;
 export const saveContextMenuTitle = (key, title) => {
 	return new Promise((resolve, reject) => {
 		if (!CONTEXT_MENU.hasOwnProperty(key)) {
-			return reject('サポートしていないContextMenu typeです');
+			return reject('Unsupported ContextMenu type');
 		}
 		const items = {
 			[generateStorageKey(key)]: title,
@@ -62,8 +62,8 @@ export const createContextMenu = () => {
 			title: contextMenuTitle.LINK,
 			contexts: ['link'],
 			targetUrlPatterns: [
-				// file:///* 指定だとローカルファイルリンクにメニューが表示されないため <all_urls> 指定している
-				// ※ targetUrlPatterns 指定を無しにしてもOk
+				// If "file:///*" is specified, the menu is not displayed on the local file link, so <all_urls> is specified.
+				// * It is also good to delete the targetUrlPatterns specification.
 				'<all_urls>',
 			],
 			id: CONTEXT_MENU.LINK.id,

@@ -8,6 +8,15 @@ import {
 import notificationUtil from '../notification-util.js';
 
 {
+	const localeCode = chrome.i18n.getMessage('_locale_code');
+	document.querySelectorAll(`[lang="${localeCode}"]`).forEach(e => {
+		e.style.display = 'inline';
+	});
+}
+
+document.title = chrome.i18n.getMessage('setup_page_title');
+
+{
 	const downloadLink = document.getElementById('manifest-json-download-link');
 	const manifestJsonContent = common.generateManifestJson();
 	const blob = new Blob([manifestJsonContent], {
@@ -18,19 +27,19 @@ import notificationUtil from '../notification-util.js';
 
 {
 	/**
-	 * 文字列をUTF-16用にUint16Arrayに変換する
+	 * Convert a string to a Uint16Array for UTF-16
 	 * @param {String} str
 	 * @returns {Uint16Array}
 	 */
 	const convertToUtf16 = str => {
 		const codePointArray = Array.from(str).map(c => c.codePointAt(0));
-		// TODO: サロゲートペア（codePointが0xFFFFを超える場合）対応
+		// TODO: Supports surrogate pairs (if codePoint is greater than 0xFFFF)
 		return new Uint16Array(codePointArray);
 	};
 
 	const dirPath = document.getElementById('dirPath');
-	const downloadLink = document.getElementById('reg-download-link');
-	downloadLink.download = 'manifest.reg';
+	const downloadLinks = document.querySelectorAll('.reg-download-link');
+	downloadLinks.forEach(e => e.download = 'manifest.reg');
 	const update = () => {
 		const bom = '\uFEFF';
 		const registryInfo = common.generateRegistryInfo(dirPath.value || dirPath.placeholder);
@@ -39,7 +48,7 @@ import notificationUtil from '../notification-util.js';
 		const blob = new Blob([convertToUtf16(bom + regFileContent).buffer], {
 			type: 'text/plain',
 		});
-		downloadLink.href = URL.createObjectURL(blob);
+		downloadLinks.forEach(e => e.href = URL.createObjectURL(blob));
 
 		document.getElementById('reg-content').innerText = regFileContent;
 		document.getElementById('reg-key').innerText = registryInfo.key;
@@ -87,7 +96,7 @@ import notificationUtil from '../notification-util.js';
 			const input = document.createElement('input');
 			input.value = currentTitle;
 			input.placeholder = CONTEXT_MENU[key].defaultTitle;
-			input.title = 'Enterで保存';
+			input.title = chrome.i18n.getMessage('press_enter_to_save');
 			input.addEventListener('keydown', evt => {
 				if (evt.key === 'Enter') {
 					saveContextMenuTitle(key, input.value).then(updateContextMenu);
