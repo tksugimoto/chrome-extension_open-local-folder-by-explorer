@@ -45,7 +45,7 @@ const openByExplorer = path => {
             // file or directory unavalaible
             send({
                 path,
-                resultMessage: 'The file/folder does not exist.',
+                resultCode: 'does_not_exist',
                 err,
             });
             return;
@@ -54,13 +54,13 @@ const openByExplorer = path => {
             execFile('explorer', [path]);
             send({
                 path,
-                resultMessage: 'The folder is opened.',
+                resultCode: 'directory_opened',
             });
         } else {
             execFile('explorer', ['/select,', path]);
             send({
                 path,
-                resultMessage: 'The folder is opened with the files.',
+                resultCode: 'file_opened',
             });
         }
     });

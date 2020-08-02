@@ -9,6 +9,15 @@
 	"not_a_file_path": {
 		"message": "Not a file path"
 	},
+	"result_does_not_exist": {
+		"message": "The file/folder does not exist."
+	},
+	"result_directory_opened": {
+		"message": "The folder is opened."
+	},
+	"result_file_opened": {
+		"message": "The folder is opened with the files."
+	},
 	"context_menu_page_description": {
 		"message": "Browse folders and files"
 	},

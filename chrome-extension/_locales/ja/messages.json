@@ -9,6 +9,15 @@
 	"not_a_file_path": {
 		"message": "ファイルパスではありません"
 	},
+	"result_does_not_exist": {
+		"message": "ファイル/フォルダが存在しません"
+	},
+	"result_directory_opened": {
+		"message": "フォルダを開きました"
+	},
+	"result_file_opened": {
+		"message": "ファイルのあるフォルダを開きました"
+	},
 	"context_menu_page_description": {
 		"message": "フォルダ・ファイル閲覧"
 	},
