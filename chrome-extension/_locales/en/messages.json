@@ -6,9 +6,9 @@
 		"message": "Open local folder in explorer from Chrome"
 	},
 	"_locale_code": {
-        "message": "en",
-        "description": "To specify the language used for multilingual support in the html file"
-    },
+		"message": "en",
+		"description": "To specify the language used for multilingual support in the html file"
+	},
 	"setup_page_title": {
 		"message": "Setup"
 	},
