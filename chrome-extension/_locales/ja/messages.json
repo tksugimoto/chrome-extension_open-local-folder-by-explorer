@@ -7,7 +7,7 @@
 	},
 	"_locale_code": {
 		"message": "ja",
-        "description": "htmlファイル中の多言語対応のための使用言語の特定用"
+		"description": "htmlファイル中の多言語対応のための使用言語の特定用"
 	},
 	"setup_page_title": {
 		"message": "設定"
