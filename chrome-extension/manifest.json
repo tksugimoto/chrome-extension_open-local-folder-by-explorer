@@ -2,7 +2,7 @@
 	"name": "__MSG_extension_name__",
 	"description": "__MSG_extension_description__",
 	"version": "0.3.0",
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"default_locale": "en",
 	"icons": {
 		"48": "/icons/icon48.png",
@@ -17,7 +17,7 @@
 		"nativeMessaging"
 	],
 	"background": {
-		"page": "background.html",
-		"persistent": false
+		"service_worker": "background.js",
+		"type": "module"
 	}
 }
