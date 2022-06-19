@@ -24,10 +24,12 @@ In order to control the host side from Chrome, you need to do the following:
 1. Install the extension
 2. Configure it according to the `Setup` tab opened at the time of installation.
     - If you need to reconfigure it, you can do so from the extension's options page
-3. Select "Open ... in Explorer" from the context menu of page, link, and selected text
-    - Open folder in Explorer
-    - Open the link destination in Explorer (for local files)
-    - Open the selected string in Explorer (for local file path)
+3. Do one of the following
+    - Click the icon for this extension on the tab for local files or folders
+    - Select "Open ... in Explorer" from the context menu of page, link, and selected text
+        - Open folder in Explorer
+        - Open the link destination in Explorer (for local files)
+        - Open the selected string in Explorer (for local file path)
 
 ### Changing the title of the context menu.
 #### Benefits.
