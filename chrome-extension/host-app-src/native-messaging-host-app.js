@@ -51,16 +51,22 @@ const openByExplorer = path => {
 			return;
 		}
 		if (stats.isDirectory()) {
-			execFile('explorer', [path]);
-			send({
-				path,
-				resultCode: 'directory_opened',
+			execFile('explorer', [path], (error, stdout, stderr) => {
+				send({
+					path,
+					resultMessage: `${error}`,
+					stdout,
+					stderr,
+				});
 			});
 		} else {
-			execFile('explorer', ['/select,', path]);
-			send({
-				path,
-				resultCode: 'file_opened',
+			execFile('explorer', ['/select,', path], (error, stdout, stderr) => {
+				send({
+					path,
+					resultMessage: `${error}`,
+					stdout,
+					stderr,
+				});
 			});
 		}
 	});
