@@ -10,7 +10,9 @@
 	},
 	"options_page": "setup/index.html",
 	"minimum_chrome_version": "73",
+	"action": {},
 	"permissions": [
+		"activeTab",
 		"storage",
 		"notifications",
 		"contextMenus",

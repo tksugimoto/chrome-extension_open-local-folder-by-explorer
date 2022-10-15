@@ -44,6 +44,18 @@ chrome.contextMenus.onClicked.addListener((info) => {
 	});
 });
 
+chrome.action.onClicked.addListener(tab => {
+	if (!tab.url.startsWith('file://')) return;
+	const messageToNative = {
+		filePath: convertUrl2FilePath(tab.url),
+	};
+	chrome.runtime.sendNativeMessage(common.applicationName, messageToNative, response => {
+		console.info(response);
+
+		notificationUtil.showNotification(response);
+	});
+});
+
 class ExtractResult {
 	constructor(target, path) {
 		this.target = target;
