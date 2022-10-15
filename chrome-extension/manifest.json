@@ -9,7 +9,7 @@
 		"128": "/icons/icon128.png"
 	},
 	"options_page": "setup/index.html",
-	"minimum_chrome_version": "73",
+	"minimum_chrome_version": "88",
 	"action": {},
 	"permissions": [
 		"activeTab",
