@@ -6,6 +6,7 @@ import {
 	updateContextMenu,
 } from '../context-menu.js';
 import notificationUtil from '../notification-util.js';
+import { convertToUtf16 } from './utf16.js';
 
 {
 	const localeCode = chrome.i18n.getMessage('_locale_code');
@@ -26,17 +27,6 @@ document.title = chrome.i18n.getMessage('setup_page_title');
 }
 
 {
-	/**
-	 * Convert a string to a Uint16Array for UTF-16
-	 * @param {String} str
-	 * @returns {Uint16Array}
-	 */
-	const convertToUtf16 = str => {
-		const codePointArray = Array.from(str).map(c => c.codePointAt(0));
-		// TODO: Supports surrogate pairs (if codePoint is greater than 0xFFFF)
-		return new Uint16Array(codePointArray);
-	};
-
 	const dirPath = document.getElementById('dirPath');
 	const downloadLinks = document.querySelectorAll('.reg-download-link');
 	downloadLinks.forEach(e => e.download = 'manifest.reg');
