@@ -41,7 +41,8 @@ const send = (messageObject) => {
 const openByExplorer = path => {
 	path = path.replace(/\\+$/, '');
 	fs.stat(path, (err, stats) => {
-		if (err) {
+		// '"' cannot be used in Windows paths, and it would break the quoting below
+		if (err || path.includes('"')) {
 			// file or directory unavalaible
 			send({
 				path,
@@ -51,13 +52,14 @@ const openByExplorer = path => {
 			return;
 		}
 		if (stats.isDirectory()) {
-			execFile('explorer', [path]);
+			// Quote the path ourselves: explorer treats an unquoted "," as a separator
+			execFile('explorer', [`"${path}"`], { windowsVerbatimArguments: true });
 			send({
 				path,
 				resultCode: 'directory_opened',
 			});
 		} else {
-			execFile('explorer', ['/select,', path]);
+			execFile('explorer', [`/select,"${path}"`], { windowsVerbatimArguments: true });
 			send({
 				path,
 				resultCode: 'file_opened',
