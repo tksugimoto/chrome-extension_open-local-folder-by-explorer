@@ -24,6 +24,12 @@
 	"result_file_opened": {
 		"message": "The folder is opened with the files."
 	},
+	"result_host_app_update_required": {
+		"message": "Host app update required"
+	},
+	"host_app_update_required_detail": {
+		"message": "To open paths containing \",\", download the host app (native-messaging-host-app.js) again from the setup page"
+	},
 	"context_menu_page_description": {
 		"message": "Browse folders and files"
 	},

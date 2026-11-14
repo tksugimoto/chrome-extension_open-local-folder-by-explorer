@@ -25,6 +25,19 @@ chrome.runtime.onInstalled.addListener(details => {
 chrome.runtime.onInstalled.addListener(createContextMenu);
 chrome.runtime.onStartup.addListener(createContextMenu);
 
+// Host apps before this version cannot open paths containing ","
+const commaSupportedHostAppVersion = 2;
+
+const showResult = (filePath, response) => {
+	notificationUtil.showNotification(response);
+	if (filePath.includes(',') && !(response.hostAppVersion >= commaSupportedHostAppVersion)) {
+		notificationUtil.showNotification({
+			resultCode: 'host_app_update_required',
+			path: chrome.i18n.getMessage('host_app_update_required_detail'),
+		});
+	}
+};
+
 chrome.contextMenus.onClicked.addListener((info) => {
 	const extractResult = extractFilePath(info);
 	if (!extractResult.isSucceeded) {
@@ -40,7 +53,7 @@ chrome.contextMenus.onClicked.addListener((info) => {
 	chrome.runtime.sendNativeMessage(common.applicationName, messageToNative, response => {
 		console.info(response);
 
-		notificationUtil.showNotification(response);
+		showResult(messageToNative.filePath, response);
 	});
 });
 
@@ -52,7 +65,7 @@ chrome.action.onClicked.addListener(tab => {
 	chrome.runtime.sendNativeMessage(common.applicationName, messageToNative, response => {
 		console.info(response);
 
-		notificationUtil.showNotification(response);
+		showResult(messageToNative.filePath, response);
 	});
 });
 

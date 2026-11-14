@@ -24,6 +24,12 @@
 	"result_file_opened": {
 		"message": "ファイルのあるフォルダを開きました"
 	},
+	"result_host_app_update_required": {
+		"message": "ホストアプリの更新が必要です"
+	},
+	"host_app_update_required_detail": {
+		"message": "「,」を含むパスを開くには、設定画面からホストアプリ（native-messaging-host-app.js）をダウンロードし直してください"
+	},
 	"context_menu_page_description": {
 		"message": "フォルダ・ファイル閲覧"
 	},
