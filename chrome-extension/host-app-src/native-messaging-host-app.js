@@ -21,8 +21,14 @@ process.stdin.once('data', _data => {
 	}
 });
 
+// Host apps without hostAppVersion are treated as version 1 (cannot open paths containing ",")
+const hostAppVersion = 2;
+
 const send = (messageObject) => {
-	const message = JSON.stringify(messageObject);
+	const message = JSON.stringify({
+		...messageObject,
+		hostAppVersion,
+	});
 	const messageBuffer = Buffer.from(message);
 	const length = messageBuffer.length;
 	const lengthBuffer = Buffer.alloc(lengthBytes);
